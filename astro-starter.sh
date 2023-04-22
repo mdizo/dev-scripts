@@ -4,7 +4,7 @@ set -eu -o pipefail # fail on error and report it, debug all lines
 
 export GUM_SPIN_SPINNER=pulse
 
-gum style --border normal --margin "1" --padding "1 2" --border-foreground 212 "Hello, there! Welcome to $(gum style --foreground 212 'Gum')."
+gum style --border normal --margin "1" --padding "1 2" --border-foreground 212 "Welcome to $(gum style --foreground 212 'Astro Starter')."
 NAME=$(gum input --char-limit=32 --placeholder "Pick a project name")
 
 printf "Project $(gum style --foreground 212 "$NAME") initiated!"
