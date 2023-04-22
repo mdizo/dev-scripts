@@ -31,8 +31,9 @@ git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier @typescript-eslint/parser"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,import,n,promise})
-PRETTIER='prettier prettier-plugin-astro'
-gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER
+PRETTIER="prettier prettier-plugin-astro"
+OTHER="typescript"
+gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 
 pnpm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
