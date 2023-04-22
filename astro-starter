@@ -16,7 +16,7 @@ if [ $# -eq 0 ]; then
     TEMPLATE=$(gum choose $FETCH_TEMPLATES --height=20)
     pnpm create astro@latest $NAME --no-install --git --typescript strictest --template $TEMPLATE; clear
 else 
-    pnpm create astro@latest $NAME --no-install --git --typescript strictest --template $1; clear
+    pnpm create astro@latest $NAME --no-install --git --typescript strict --template $1; clear
 fi
 
 cd $NAME
@@ -30,7 +30,7 @@ git add .
 git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier @typescript-eslint/parser"
-ESLINT_PLUGINS=(eslint-plugin-{prettier,jsx-a11y,astro,import,n,promise})
+ESLINT_PLUGINS=(eslint-plugin-{prettier,jsx-a11y,astro})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
 OTHER="typescript"
 gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
