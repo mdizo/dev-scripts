@@ -24,7 +24,7 @@ cd $NAME
 gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
 pnpm husky install && pnpm husky add .husky/commit-msg 'pnpm commitlint --edit ${1}'
 npm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
-gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/.commitlintrc . --force
+gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/commitlint.config.js . --force
 
 git add .
 git commit -m "chore: :hammer: add + configure tools for better commit messages"
