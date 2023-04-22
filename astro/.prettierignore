@@ -12,5 +12,5 @@
 !.prettierrc
 !.eslintrc
 !.commitlintrc
-!lintstagedrc.js
+!.lintstagedrc.js
 !README.md
