@@ -22,7 +22,7 @@ fi
 cd $NAME
 
 gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
-npx husky install && npx husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
+pnpm husky install && pnpm husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'
 pnpm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
 gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/.commitlintrc . --force
 
@@ -35,9 +35,9 @@ PRETTIER='prettier prettier-plugin-astro'
 gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 
-npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
-npm pkg set scripts.build-types="tsc --noEmit --pretty"
-npx husky add .husky/pre-commit 'npx lint-staged --concurrent false'
+pnpm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
+pnpm pkg set scripts.build-types="tsc --noEmit --pretty"
+pnpm husky add .husky/pre-commit 'npx lint-staged --concurrent false'
 
 sed -i '1i// eslint-disable-next-line' src/env.d.ts # ignore standardjs rule 
 
