@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:astro/recommended", "plugin:astro/jsx-a11y-recommended", "standard-with-typescript", "prettier"],
+  "extends": ["standard-with-typescript", "plugin:astro/recommended", "plugin:astro/jsx-a11y-recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "tsconfigRootDir": ".",
