@@ -4,7 +4,6 @@ export default {
   extends: ['standard-with-typescript', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    tsconfigRootDir: __dirname,
     project: true,
     sourceType: 'module',
     ecmaVersion: 'latest'
