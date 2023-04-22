@@ -30,7 +30,7 @@ git add .
 git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier @typescript-eslint/parser"
-ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,import,n,promise})
+ESLINT_PLUGINS=(eslint-plugin-{prettier,jsx-a11y,astro,import,n,promise})
 PRETTIER="prettier prettier-plugin-astro"
 OTHER="typescript"
 gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
