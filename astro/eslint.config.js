@@ -5,6 +5,7 @@ export default {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
+    project: true,
     sourceType: 'module',
     ecmaVersion: 'latest'
   },
@@ -20,7 +21,6 @@ export default {
       // Parse the script in `.astro` as TypeScript
       parserOptions: {
         parser: "@typescript-eslint/parser",
-        project: "./tsconfig.json",
         extraFileExtensions: [".astro"],
       },
       rules: {
