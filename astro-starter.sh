@@ -33,96 +33,10 @@ git commit -m "chore: :hammer: add + configure tools for better commit messages"
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier @typescript-eslint/parser"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,import,n,promise})
 PRETTIER='prettier prettier-config-standard prettier-plugin-astro'
-gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER 
-
-printf '%s\n' "
-/** @type {import("prettier").Config} */
-module.exports = {
-  ...require('prettier-config-standard'),
-  pluginSearchDirs: [__dirname],
-  plugins: [require.resolve('prettier-plugin-astro')],
-  overrides: [
-    {
-      files: '*.astro',
-      options: {
-        parser: 'astro'
-      }
-    }
-  ]
-}" > prettier.config.cjs
-
-printf '%s\n' "
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
-  extends: ['plugin:astro/recommended'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-    ecmaVersion: 'latest'
-  },
-  overrides: [
-    {
-      files: ['*.astro'],
-      parser: 'astro-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro']
-      },
-      rules: {
-        // override/add rules settings here, such as:
-        // "astro/no-set-html-directive": "error"
-      }
-    }
-  ]
-}" > .eslintrc.cjs
-
-printf '%s\n' '
-{
-  "recommendations": ["astro-build.astro-vscode", "esbenp.prettier-vscode"],
-  "unwantedRecommendations": []
-}' > .vscode/extensions.json
-
-printf '%s\n' '
-{
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "astro",
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.documentSelectors": ["**/*.astro"],
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-}' > .vscode/setting.json
+gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER
+gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 
 npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
-
-printf '%s\n' "
-.husky
-.vscode
-node_modules
-public
-dist" > .eslintignore
-
-printf '%s\n' "
-# Ignore everything
-/*
-
-# Except these files & folders
-!/src
-!/public
-!/.github
-!tsconfig.json
-!astro.config.mjs
-!package.json
-!.prettierrc
-!.eslintrc.js
-!commitlint.config.cjs
-!README.md" > .prettierignore
-
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 npx husky add .husky/pre-commit 'npx lint-staged --concurrent false'
 
