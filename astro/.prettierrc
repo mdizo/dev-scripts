@@ -17,7 +17,7 @@
     "trailingComma": "none",
     "useTabs": false,
     "vueIndentScriptAndStyle": false,
-    "pluginSearchDirs": ["__dirname"],
+    "pluginSearchDirs": ["."],
     "plugins": ["./node_modules/prettier-plugin-astro"],
     "overrides": [
         {
