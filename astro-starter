@@ -14,7 +14,7 @@ sleep 2; clear
 if [ $# -eq 0 ]; then
     FETCH_TEMPLATES=$(gum spin --spinner pulse --title "Fetching list of Astro templates..." --show-output -- svn ls https://github.com/withastro/astro.git/branches/main/examples | grep "/$" | sed "s,/$,,")
     TEMPLATE=$(gum choose $FETCH_TEMPLATES --height=20)
-    pnpm create astro@latest $NAME --no-install --git --typescript strictest --template $TEMPLATE; clear
+    pnpm create astro@latest $NAME --no-install --git --typescript strict --template $TEMPLATE; clear
 else 
     pnpm create astro@latest $NAME --no-install --git --typescript strict --template $1; clear
 fi
