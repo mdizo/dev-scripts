@@ -1,0 +1,16 @@
+# Ignore everything
+/*
+
+# Except these files & folders
+!/src
+!/public
+!/.github
+!/.vscode
+!tsconfig.json
+!astro.config.mjs
+!package.json
+!.prettierrc
+!.eslintrc
+!.commitlintrc
+!lintstagedrc.js
+!README.md
