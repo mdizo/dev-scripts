@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eu -o pipefail # fail on error and report it, debug all lines
 
 export GUM_SPIN_SPINNER=pulse
 
