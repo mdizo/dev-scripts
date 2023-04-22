@@ -16,7 +16,7 @@ done
 
 echo Installing scripts
 
-ln -fsr astro-starter.sh ~/.local/bin/
+ln -fsr astro-starter ~/.local/bin/
 
 echo Installation complete!
 
