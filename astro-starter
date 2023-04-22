@@ -40,5 +40,7 @@ npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 npx husky add .husky/pre-commit 'npx lint-staged --concurrent false'
 
+sed -i '1i// eslint-disable-next-line' src/env.d.ts # ignore standardjs rule 
+
 git add .
 git commit -m "chore: :hammer: add + configure linters to enforce code styles"
