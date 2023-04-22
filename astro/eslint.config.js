@@ -9,6 +9,9 @@ export default {
     sourceType: 'module',
     ecmaVersion: 'latest'
   },
+  rules: {
+    '@typescript-eslint/triple-slash-reference': 'warn'
+  },
   overrides: [
     // Configuration for astro files
     {
