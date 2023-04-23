@@ -2,7 +2,6 @@
 
 module.exports = {
   extends: ['stylelint-config-standard-scss'],
-  customSyntax: 'postcss-html',
   rules: {
     'selector-pseudo-class-no-unknown': [
       true,
@@ -15,6 +14,10 @@ module.exports = {
     {
       files: ['*.scss', '**/*.scss'],
       customSyntax: 'postcss-scss'
+    },
+    {
+      files: ['*.astro', '**/*.astro'],
+      customSyntax: 'postcss-html'
     }
   ]
 }
