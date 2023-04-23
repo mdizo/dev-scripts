@@ -21,21 +21,22 @@ fi
 
 cd $NAME
 
-# gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
-# pnpm husky install && pnpm husky add .husky/commit-msg 'pnpm commitlint --edit ${1}'
-# npm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
-# gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/commitlint.config.cjs . --force
+gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
+pnpm husky install && pnpm husky add .husky/commit-msg 'pnpm commitlint --edit ${1}'
+npm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
+gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/commitlint.config.cjs . --force
 
-# git add .
-# git commit -m "chore: :hammer: add + configure tools for better commit messages"
+git add .
+git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
-STYLELINT="stylelint stylelint-config-standard-scss postcss-html postcss-scss"
+STYLELINT="stylelint stylelint-config-standard-scss stylelint-config-clean-order postcss-html postcss-scss"
 LANG="typescript sass"
+MISC="lint-staged"
 
-gum spin --title "Installing languages and linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG
+gum spin --title "Installing languages and linters..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG $MISC
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 # pnpm husky add .husky/pre-commit 'pnpm lint-staged'
 
@@ -49,6 +50,10 @@ pnpm prettier -w *rc.cjs *.mjs # format config files
 pnpm astro sync # build astro types
 
 echo -e '\n# lint cache\n.eslintcache\n.stylelintcache' >> .gitignore
+
+# inject readme
+cp README.md 02-copy.md
+cat 01-inject-readme.md 02-copy.md > README.md && rm 01-inject-readme.md 02-copy.md
 
 git add .
 git commit -m "chore: :hammer: add + configure lang and linters to enforce code styles" --no-verify # commit without hooks
