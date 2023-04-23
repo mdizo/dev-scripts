@@ -1,7 +1,12 @@
 /** @type {import("eslint").Linter.Config} */
 
 module.exports = {
-  extends: ['standard-with-typescript'],
+  extends: [
+    'standard-with-typescript',
+    'plugin:astro/recommended',
+    'plugin:astro/jsx-a11y-recommended',
+    'plugin:prettier/recommended'
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -10,12 +15,11 @@ module.exports = {
     project: './tsconfig.json'
   },
   rules: {
-    '@typescript-eslint/triple-slash-reference': 'warn',
+    '@typescript-eslint/triple-slash-reference': 'warn'
   },
   overrides: [
     {
       files: ['*.astro'],
-      extends: ['standard-with-typescript', 'plugin:astro/recommended'],
       parser: 'astro-eslint-parser',
       parserOptions: {
         parser: '@typescript-eslint/parser',

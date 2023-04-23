@@ -29,20 +29,26 @@ cd $NAME
 # git add .
 # git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
-ESLINT="eslint eslint-config-standard-with-typescript"
-ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro})
+ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier"
+ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
-OTHER="typescript"
+STYLELINT="stylelint stylelint-config-standard-scss postcss-html postcss-scss"
+LANG="typescript sass"
 
-gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
+gum spin --title "Installing languages and linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
-# pnpm husky add .husky/pre-commit 'pnpm lint-staged --concurrent false'
+# pnpm husky add .husky/pre-commit 'pnpm lint-staged'
 
-npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
+npm pkg set scripts.lint:format="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\""
+npm pkg set scripts.lint:js="eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
+npm pkg set scripts.lint:css="stylelint --cache --fix \"src/**/*.{astro,css,scss}\""
+npm pkg set scripts.lint="pnpm lint:format && pnpm lint:js && pnpm lint:css"
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 
-pnpm prettier -w *rc.cjs # format config files
+pnpm prettier -w *rc.cjs *.mjs # format config files
 pnpm astro sync # build astro types
 
+echo -e '\n# lint cache\n.eslintcache\n.stylelintcache' >> .gitignore
+
 git add .
-git commit -m "chore: :hammer: add + configure linters to enforce code styles" --no-verify
+git commit -m "chore: :hammer: add + configure lang and linters to enforce code styles" --no-verify # commit without hooks
