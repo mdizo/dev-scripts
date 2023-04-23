@@ -46,8 +46,8 @@ npm pkg set scripts.lint:css="stylelint --cache --fix \"src/**/*.{astro,css,scss
 npm pkg set scripts.lint="pnpm lint:format && pnpm lint:js && pnpm lint:css"
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 
-pnpm prettier -w *rc.cjs *.mjs # format config files
 pnpm astro sync # build astro types
+pnpm prettier -w ".*.{cjs,mjs}" "*.config.{cjs,mjs}" "**/*.{js,jsx,ts,tsx,md,mdx,astro,css,scss}" # format project files
 
 echo -e '\n# lint cache\n.eslintcache\n.stylelintcache' >> .gitignore
 
