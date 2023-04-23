@@ -9,8 +9,5 @@
 !tsconfig.json
 !astro.config.mjs
 !package.json
-!.prettierrc
-!.eslintrc
-!.commitlintrc
-!.lintstagedrc.js
+!.*.cjs
 !README.md

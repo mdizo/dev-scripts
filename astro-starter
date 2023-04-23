@@ -21,24 +21,25 @@ fi
 
 cd $NAME
 
-gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
-pnpm husky install && pnpm husky add .husky/commit-msg 'pnpm commitlint --edit ${1}'
-npm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
-gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/commitlint.config.cjs . --force
+# gum spin --title "Installing commit tools..." -- pnpm add -D husky commitizen cz-git @commitlint/{config-conventional,cli}
+# pnpm husky install && pnpm husky add .husky/commit-msg 'pnpm commitlint --edit ${1}'
+# npm pkg set scripts.prepare="husky install" scripts.cz="cz" config.commitizen.path="./node_modules/cz-git"
+# gum spin --title "Downloading commit configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/commitlint.config.cjs . --force
 
-git add .
-git commit -m "chore: :hammer: add + configure tools for better commit messages"
+# git add .
+# git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
-ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier @typescript-eslint/parser"
-ESLINT_PLUGINS=(eslint-plugin-{prettier,jsx-a11y,astro})
-PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
+ESLINT="eslint @typescript-eslint/parser"
+ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro})
+PRETTIER="prettier prettier-plugin-astro"
 OTHER="typescript"
-gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
+
+gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
+# pnpm husky add .husky/pre-commit 'pnpm lint-staged --concurrent false'
 
 npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
-pnpm husky add .husky/pre-commit 'pnpm lint-staged --concurrent false'
 
 git add .
 git commit -m "chore: :hammer: add + configure linters to enforce code styles"
