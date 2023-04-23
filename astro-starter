@@ -32,7 +32,7 @@ git commit -m "chore: :hammer: add + configure tools for better commit messages"
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
-STYLELINT="stylelint stylelint-config-standard-scss stylelint-config-clean-order"
+STYLELINT="stylelint stylelint-gamut stylelint-config-standard-scss stylelint-config-clean-order"
 LANG="typescript sass"
 POSTCSS="autoprefixer postcss-preset-env postcss-html postcss-scss"
 MISC="lint-staged"

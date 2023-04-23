@@ -2,13 +2,13 @@
 
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-clean-order'],
+  plugins: ['stylelint-gamut'],
   rules: {
-    'selector-pseudo-class-no-unknown': [
-      true,
-      {
-        ignorePseudoClasses: ['global']
-      }
-    ]
+    "gamut/color-no-out-gamut-range": true,
+    "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
+    "color-function-notation": "modern",
+    "color-no-hex": true,
+    'selector-pseudo-class-no-unknown': [true, {ignorePseudoClasses: ['global']}],
   },
   overrides: [
     {
