@@ -9,6 +9,9 @@ module.exports = {
     ecmaVersion: 'latest',
     project: './tsconfig.json'
   },
+  rules: {
+    '@typescript-eslint/triple-slash-reference': 'warn',
+  },
   overrides: [
     {
       files: ['*.astro'],

@@ -29,17 +29,20 @@ cd $NAME
 # git add .
 # git commit -m "chore: :hammer: add + configure tools for better commit messages"
 
-ESLINT="eslint @typescript-eslint/parser"
+ESLINT="eslint eslint-config-standard-with-typescript"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro})
-PRETTIER="prettier prettier-plugin-astro"
+PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
 OTHER="typescript"
 
-gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER
+gum spin --title "Installing linters..." -- pnpm add -D lint-staged $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $OTHER
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 # pnpm husky add .husky/pre-commit 'pnpm lint-staged --concurrent false'
 
 npm pkg set scripts.lint="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 
+pnpm prettier -w *rc.cjs # format config files
+pnpm astro sync # build astro types
+
 git add .
-git commit -m "chore: :hammer: add + configure linters to enforce code styles"
+git commit -m "chore: :hammer: add + configure linters to enforce code styles" --no-verify
