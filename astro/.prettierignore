@@ -7,7 +7,7 @@
 !/.github
 !/.vscode
 !tsconfig.json
-!astro.config.mjs
 !package.json
-!.*.cjs
+!*.config.?js
+!.*.?js
 !README.md
