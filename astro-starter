@@ -34,7 +34,7 @@ ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
 STYLELINT="stylelint stylelint-config-standard-scss stylelint-config-clean-order postcss-html postcss-scss"
 LANG="typescript sass"
-MISC="lint-staged"
+MISC="lint-staged autoprefixer"
 
 gum spin --title "Installing languages and linters..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG $MISC
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
