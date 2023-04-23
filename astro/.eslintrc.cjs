@@ -1,7 +1,7 @@
 /** @type {import("eslint").Linter.Config} */
 
 module.exports = {
-  extends: ['plugin:astro/recommended'],
+  extends: ['standard-with-typescript'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -12,6 +12,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.astro'],
+      extends: ['standard-with-typescript', 'plugin:astro/recommended'],
       parser: 'astro-eslint-parser',
       parserOptions: {
         parser: '@typescript-eslint/parser',
