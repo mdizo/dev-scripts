@@ -1,4 +1,4 @@
-⛔ Project in Development
+🚧 Project in Development
 =================================================
 ```
                _________
@@ -22,6 +22,7 @@
 ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=for-the-badge&logo=stylelint&logoColor=white)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-F3DF49.svg?style=for-the-badge)](https://standardjs.com)
 
 This is an example README file demonstrating a suggested README file structure for software projects on GitHub.  You can copy this file into your project repository and edit the text as needed.
