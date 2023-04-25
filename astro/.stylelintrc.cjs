@@ -1,7 +1,7 @@
 /** @type {import("stylelint").Config} */
 
 module.exports = {
-  extends: ['stylelint-config-standard-scss', 'stylelint-config-clean-order'],
+  extends: ['stylelint-config-clean-order', 'stylelint-config-standard-scss'],
   plugins: ['stylelint-gamut'],
   rules: {
     "gamut/color-no-out-gamut-range": true,
