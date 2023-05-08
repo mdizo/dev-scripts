@@ -21,6 +21,12 @@ module.exports = {
     "color-function-notation": "modern",
     "color-no-hex": true,
     'selector-pseudo-class-no-unknown': [true, {ignorePseudoClasses: ['global']}],
+    'custom-property-pattern': [
+			'^[a-z0-9]+((\-[a-z0-9]+)*(\-\-[a-z0-9]+)?)?$',
+			{
+				message: (name) => `Expected custom property name "${name}" to be kebab-case`,
+			},
+		],
   },
   overrides: [
     {
