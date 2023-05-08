@@ -41,6 +41,7 @@ gum spin --title "Setting up project tooling..." -- pnpm add -D $ESLINT ${ESLINT
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 pnpm husky add .husky/pre-commit 'pnpm lint-staged'
 
+npm pkg set browserslist[]="defaults and supports es6-module" browserslist[]="maintained node versions"
 npm pkg set scripts.lint:format="prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro,css,scss}\""
 npm pkg set scripts.lint:js="eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\""
 npm pkg set scripts.lint:css="stylelint --cache --fix \"src/**/*.{astro,css,scss}\""
