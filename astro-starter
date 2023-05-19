@@ -59,3 +59,4 @@ cat 01-inject-readme.md 02-copy.md > README.md && rm 01-inject-readme.md 02-copy
 
 git add .
 git commit -m "chore: :hammer: add + configure lang and linters to enforce code styles" --no-verify # commit without hooks
+git branch -m master main
