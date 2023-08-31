@@ -28,7 +28,7 @@ if [ "" = "$PKG_GUM" ]; then
     sudo apt update && sudo apt install gum --yes
 fi
 
-echo Installing scripts
+echo Installing astro-starter
 
 mkdir -p ~/.local/bin
 ln -fsr ./astro-starter ~/.local/bin/astro-starter
