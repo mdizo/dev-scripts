@@ -34,10 +34,9 @@ ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
 STYLELINT="stylelint stylelint-gamut stylelint-config-standard-scss stylelint-config-clean-order"
 LANG="sass"
-POSTCSS="autoprefixer postcss-preset-env postcss-html postcss-scss"
 MISC="lint-staged"
 
-gum spin --title "Setting up project tooling..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $POSTCSS $LANG $MISC
+gum spin --title "Setting up project tooling..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG $MISC
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 pnpm husky add .husky/pre-commit 'pnpm lint-staged'
 
