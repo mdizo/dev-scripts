@@ -1,7 +1,7 @@
 /** @type {import("stylelint").Config} */
 
 module.exports = {
-  extends: ['stylelint-config-html', 'stylelint-config-clean-order', 'stylelint-config-standard-scss'],
+  extends: ['stylelint-config-clean-order', 'stylelint-config-standard-scss'],
   plugins: ['stylelint-gamut'],
   rules: {
     'declaration-empty-line-before': [
