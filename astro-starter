@@ -56,6 +56,7 @@ cat 01-inject-readme.md 02-copy.md > README.md && rm 01-inject-readme.md 02-copy
 
 pnpm astro sync # build astro types
 pnpm prettier -w ".*.{cjs,mjs}" "*.config.{cjs,mjs}" "**/*.{js,jsx,ts,tsx,md,mdx,astro,css,scss}" # format project files
+pnpm stylelint "**/*.{astro,css,scss}" --fix # autofix style formatting
 
 git add .
 git commit -m "chore: :hammer: add + configure lang and linters to enforce code styles" --no-verify # commit without hooks
