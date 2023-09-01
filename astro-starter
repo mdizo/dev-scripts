@@ -32,11 +32,12 @@ git commit -m "chore: :hammer: add + configure tools for better commit messages"
 ESLINT="eslint eslint-config-standard-with-typescript eslint-config-prettier"
 ESLINT_PLUGINS=(eslint-plugin-{jsx-a11y,astro,prettier})
 PRETTIER="prettier prettier-config-standard prettier-plugin-astro"
-STYLELINT="stylelint stylelint-gamut stylelint-config-standard-scss stylelint-config-clean-order"
+STYLELINT="stylelint stylelint-gamut stylelint-config-standard-scss stylelint-config-clean-order stylelint-config-html"
+POSTCSS="postcss-html postcss-scss"
 LANG="sass"
 MISC="lint-staged"
 
-gum spin --title "Setting up project tooling..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG $MISC
+gum spin --title "Setting up project tooling..." -- pnpm add -D $ESLINT ${ESLINT_PLUGINS[@]} $PRETTIER $STYLELINT $LANG $MISC $POSTCSS
 gum spin --title "Downloading configs..." -- svn export https://github.com/mdizo/dev-scripts.git/branches/main/astro/ . --force
 pnpm husky add .husky/pre-commit 'pnpm lint-staged'
 
@@ -47,14 +48,14 @@ npm pkg set scripts.lint:css="stylelint --cache --fix \"src/**/*.{astro,css,scss
 npm pkg set scripts.lint="pnpm lint:format && pnpm lint:js && pnpm lint:css"
 npm pkg set scripts.build-types="tsc --noEmit --pretty"
 
-pnpm astro sync # build astro types
-pnpm prettier -w ".*.{cjs,mjs}" "*.config.{cjs,mjs}" "**/*.{js,jsx,ts,tsx,md,mdx,astro,css,scss}" # format project files
-
 echo -e '\n# lint cache\n.eslintcache\n.stylelintcache' >> .gitignore
 
 # inject readme
 cp README.md 02-copy.md
 cat 01-inject-readme.md 02-copy.md > README.md && rm 01-inject-readme.md 02-copy.md
+
+pnpm astro sync # build astro types
+pnpm prettier -w ".*.{cjs,mjs}" "*.config.{cjs,mjs}" "**/*.{js,jsx,ts,tsx,md,mdx,astro,css,scss}" # format project files
 
 git add .
 git commit -m "chore: :hammer: add + configure lang and linters to enforce code styles" --no-verify # commit without hooks
